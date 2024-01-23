@@ -10,7 +10,7 @@ load_dotenv()
 
 embeddings = OpenAIEmbeddings()
 
-def create_vector_db_from_youtube_url(video_url: str)-> FAISS:
+def create_vector_db_from_youtube_url(video_url: str):
     loader = YoutubeLoader.from_youtube_url(video_url)
     transcript = loader.load()
     chunk = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
@@ -18,7 +18,7 @@ def create_vector_db_from_youtube_url(video_url: str)-> FAISS:
     db = FAISS.from_documents(docs, embeddings)
     db.save_local("faiss_index")
 
-def return_db_embeddings():
+def return_db_embeddings()-> FAISS:
     new_db = FAISS.load_local("faiss_index", embeddings)
     return new_db
 

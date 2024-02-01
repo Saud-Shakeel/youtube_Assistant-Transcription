@@ -17,7 +17,7 @@ if user_query:
     db = lch.return_db_embeddings()
     response = lch.get_response_from_query(db, user_query)
     st.subheader('Answer:')
-    st.text(textwrap.fill(response['query-text'], width=80))
+    st.text(textwrap.fill(response, width=80))
 
 
 
